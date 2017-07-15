@@ -1,3 +1,38 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container-fluid">
+  <div class="col-xs-12 topbar">
+    <div class="col-xs-2 ">
+      <h3> SkyCast! </h3>
+    </div>
+    <div class="col-xs-offset-3 col-xs-5 searchbox">
+        <input #cityName name="cityName" type="text" class="col-xs-8 searchtextbox" placeholder="Enter City Name" />
+        <button name="goButton" type="button" class="btn btn-info col-xs-offset-1 col-xs-2" (click)="go()"> GO! </button>
+    </div>
+    
+      <img src="https://darksky.net/dev/img/attribution/poweredby.png" class="darkskylogo" />
+    
+  </div>
+
+  <div class="col-xs-2 recentSearches"> 
+    <h4> Most Visited Cities </h4>
+    <ul class="list-group searchlist">
+        <li class="list-group-item" (click)="loadRecentSearch(s.latitude,s.longitude,s.location)" *ngFor="let s of recentSearches | slice:0:14">
+            {{s.location}}
+        </li>
+    </ul>
+  </div>
+    <div class="col-xs-8">
+      <div class="col-xs-12">
+      <ul class="nav nav-tabs">
+        <li role="presentation"(click)="showCurrentWeather()" [ngClass]="{'active': currentWeather}"><a href="#">Current Weather</a></li>
+        <li role="presentation" (click)="showHistoricData()" [ngClass]="{'active': !currentWeather}"><a href="#">Historic Data</a></li>
+      </ul>
+      </div>
+      <div class="col-xs-12" *ngIf="currentWeather" >
+       <app-daily-forecast [lat] = "lat" [lng] = "lng" [selectedCity]="selectedCity"> Daily Forecast </app-daily-forecast>
+      </div>
+      <div class="col-xs-12" *ngIf="!currentWeather">
+        <app-historical-forecast [lat] = "lat" [lng] = "lng" [selectedCity]="selectedCity"> </app-historical-forecast>
+      </div>
+    </div>
+
+</div>

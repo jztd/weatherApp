@@ -1,0 +1,17 @@
+.currentweather
+{
+    /*margin-top:10px;*/
+    margin-bottom: 10px;
+    background-color: rgba(0,0,0, .25);
+}
+
+.forecast
+{
+     background-color: rgba(0,0,0, .25);
+     /*padding-top:10px;*/
+
+}
+.table > tbody > tr:first-child > td
+{
+    border: none;
+}

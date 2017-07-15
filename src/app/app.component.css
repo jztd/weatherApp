@@ -1,0 +1,59 @@
+
+.topbar
+{
+    width:100%;
+    background-color: #7D7B7F;
+    border-bottom: 1px;
+    box-shadow: 5px 0px 10px #3F3E40;
+    margin-bottom: 10px;
+    /*position: fixed;*/
+
+}
+.searchbox
+{
+    /*background-color:#FFF;*/
+    padding-bottom:5px;
+    position:absolute;
+    bottom:0;
+}
+.searchtextbox
+{
+    margin-top:3px;
+}
+.gobutton
+{
+    position:absolute;
+    bottom:0;
+}
+
+.recentSearches
+{   
+    /*margin-top:10px;*/
+    background-color: rgba(0,0,0,.25);
+
+}
+.list-group-item
+{
+    background: none;
+    border: none;
+    
+}
+.list-group
+{
+    background: none;
+    border:none;
+}
+
+.searchlist > li:hover
+{
+    background-color: #E5DBD4;
+}
+
+.darkskylogo
+{
+    height: 50px;
+    width:100px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

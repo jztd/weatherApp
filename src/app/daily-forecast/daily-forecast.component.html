@@ -1,0 +1,76 @@
+
+<div class="col-xs-12 currentweather">
+  <h4 class="col-xs-12 time">
+    <div class="col-xs-3">{{ currentDate }}</div>
+    <div class="col-xs-6 col-xs-offset-1"> {{ selectedCity }} </div>
+  </h4> 
+  <div class="col-xs-12">
+    <h1 class="col-xs-5"> {{ data.temperature | number:'1.0-0' }}&#176; F </h1>
+    <h3 class="col-xs-6 col-xs-offset-1"> Current Weather: {{ data.summary }} </h3>
+  </div>
+  <div class="col-xs-12">
+   <h4 class="col-xs-2"> Feels Like: {{ data.apparentTemperature | number:'1.0-0' }}&#176; F </h4>
+   <h4 class="col-xs-2"> Humidity: {{ data.humidity * 100 | number:'1.0-0'}}%</h4>
+   <h4 class="col-xs-2"> Dew Point: {{ data.dewPoint | number:'1.0-0'}}&#176; F </h4>
+   <h4 class="col-xs-3"> Chance of Rain: {{ data.precipProbability * 100 | number: '1.0-2'}}% </h4>
+   <h4 class="col-xs-3"> <div class="col-xs-12">Wind:</div> <div>{{ data.windDirection }} {{ data.windSpeed | number:'1.0-0' }} mph </div> </h4>
+  </div>
+</div>
+<div class="col-xs-12">
+  <ul class="nav nav-tabs">
+    <li role="presentation"(click)="showForecast()" [ngClass]="{'active': forecast}"><a href="#">7 Day Forecast</a></li>
+    <li role="presentation" (click)="showHourly()" [ngClass]="{'active': !forecast}"><a href="#">Hourly</a></li>
+  </ul>
+</div>
+<div class="col-xs-12 forecast" *ngIf="forecast">
+  <table class="table">
+    <tbody>
+      <tr *ngFor="let day of forecastData | slice:1">
+        <td> 
+          <div class="col-xs-12">
+            <div class="col-xs-7">
+            <strong> <div class="col-xs-12">{{ day.date }}</div></strong>
+              <div class="col-xs-12"> {{ day.data.summary }} </div>
+            </div>
+            <div class="col-xs-3 col-xs-offset-2">
+              <strong>
+              <div class="col-xs-12"> &uarr; {{ day.data.temperatureMax | number: '1.0-0'}}&#176;F </div>
+              <div class="col-xs-12"> &darr; {{ day.data.temperatureMin | number: '1.0-0'}}&#176;F</div>
+              </strong>
+
+            </div>
+          </div>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="col-xs-12 forecast" *ngIf="!forecast">
+    <div class="col-xs-12">
+      <canvas baseChart height="250"
+                [datasets]="hourlyTempData"
+                [labels]="labels"
+                [options]="chartOptions"
+                [legend]="chartLegend"
+                [chartType]="chartType">
+      </canvas>
+    </div>
+    <div class="col-xs-12">
+      <canvas baseChart height="250"
+                [datasets]="hourlyPrecipData"
+                [labels]="labels"
+                [options]="chartOptions"
+                [legend]="chartLegend"
+                [chartType]="chartType">
+      </canvas>
+    </div>
+    <div class="col-xs-12">
+      <canvas baseChart height="250"
+                [datasets]="hourlyhumidityData"
+                [labels]="labels"
+                [options]="chartOptions"
+                [legend]="chartLegend"
+                [chartType]="chartType">
+      </canvas>
+    </div>
+</div>

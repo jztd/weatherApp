@@ -1,0 +1,59 @@
+<div class="col-xs-12 historicaldatadaily">
+    <form class="form-inline">
+      <div class="form-group dateselect">
+          <label for="date"> Select a date to retrieve data from </label>
+          <input  #date type="date" name="date" class="form-control"> 
+      </div>
+      <button name="goButton" type="button" class="btn btn-info" (click)="selectDate(date.value)"> Select Date </button>
+    </form>
+</div>
+<div class="col-xs-12 historicaldatadaily" *ngIf="dateSelected">
+  <h4 class="col-xs-12">
+    <div class="col-xs-3">{{ dayDate }}</div>
+    <div class="col-xs-6 col-xs-offset-1"> {{ selectedCity }} </div>
+  </h4>
+  <div class="col-xs-12">
+      <div class="col-xs-2"> <p> High Temp: {{ dayObject.highTemp | number:'1.0-0' }}&#176; F </p></div>
+      <div class="col-xs-2"> <p> Low Temp: {{ dayObject.lowTemp  | number:'1.0-0'}}&#176; F </p> </div>
+      <div class="col-xs-2"> <p> Humidity: {{ dayObject.humidity*100 }}% </p> </div>
+      <div class="col-xs-2"> <p> Dew Point: {{ dayObject.dewPoint | number:'1.0-0' }} </p> </div>
+      <div class="col-xs-4"> <p> Precipitation Amount: {{ dayObject.precipitationAmount | number:'3.2-2' }} </p> </div>
+  </div>
+  <div class="col-xs-12">
+      <p> {{ dayObject.summary }} </p>
+  </div>
+</div>
+<div class="col-xs-12 historicaldatacharts">
+      <!--average high temperature-->
+      <canvas baseChart height="250"
+                [datasets]="averageHighTemperatureData"
+                [labels]="monthLabels"
+                [options]="chartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+      </canvas>
+      <!--average low temperature-->
+      <canvas baseChart height="250"
+                [datasets]="averageLowTemperatureData"
+                [labels]="monthLabels"
+                [options]="chartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+      </canvas>
+      <!--average humidity-->
+      <canvas baseChart height="250"
+                [datasets]="averageHumidityData"
+                [labels]="monthLabels"
+                [options]="chartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+      </canvas>
+      <!--average dewpoint-->
+    <canvas baseChart height="250"
+                [datasets]="averageDewPointData"
+                [labels]="monthLabels"
+                [options]="chartOptions"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+      </canvas>
+</div>
