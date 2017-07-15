@@ -29,7 +29,7 @@ export class HistoricalForecastComponent implements OnInit, OnChanges {
   public averagePrecipitationData = [{data:[], label:"precipitation"}];
   public monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'];
     
-  public ChartOptions= {responsive: true };
+  public chartOptions= {responsive: true };
   public lineChartLegend:boolean = true;
   public lineChartType:string = 'line';
   constructor( private forecastService: ForecastService) { }
